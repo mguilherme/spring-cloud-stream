@@ -1,0 +1,25 @@
+server:
+  port: 0
+
+spring:
+  cloud:
+    stream:
+      bindings:
+        input:
+          destination: message.request.exchange
+          group: receiver
+          binder: rabbit1
+        output:
+          destination: message.response.exchange
+          binder: rabbit1
+
+      binders:
+        rabbit1:
+          type: rabbit
+          environment:
+            spring:
+              rabbitmq:
+                host: localhost
+                port: 5672
+                username: guest
+                password: guest
