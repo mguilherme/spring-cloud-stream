@@ -23,7 +23,7 @@ public class MessageController {
 
     @PostMapping("/message")
     @ResponseStatus(HttpStatus.ACCEPTED)
-    public String sendMessage(@RequestParam String message) {
+    public String sendMessage(@RequestParam(required = false, defaultValue = "Default Message") String message) {
         messageGateway.sendMessage(message);
 
         return format("Message '%s' sent", message);
